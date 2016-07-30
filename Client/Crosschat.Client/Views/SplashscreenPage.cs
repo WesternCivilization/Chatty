@@ -70,6 +70,8 @@ namespace Crosschat.Client.Views
             }
 
             AuthenticationResponseType result;
+			await Navigation.PushAsync(new ChatPage(new HomeViewModel(_applicationManager)));
+			/*
             try
             {
                 result = await _applicationManager.AccountManager.ValidateAccount();
@@ -87,7 +89,7 @@ namespace Crosschat.Client.Views
             {
                 await Navigation.PushAsync(new RegistrationPage(new RegistrationViewModel(_applicationManager)));
             }
-
+			*/
             base.OnAppearing();
         }
 

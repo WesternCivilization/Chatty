@@ -34,7 +34,7 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n />
     <MtouchFastDev>True</MtouchFastDev>
-    <MtouchArch>Default, ARMv7</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -127,13 +127,11 @@
     </ProjectReference>
     <ProjectReference Include="..\Crosschat.Client\Crosschat.Client.csproj">
       <Name>Crosschat.Client</Name>
+      <Project>{DC6F7A4F-F7EA-4ABD-9A30-BED567B4EB22}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoTouch.Dialog-1" />
-    <Reference Include="protobuf-net">
-      <HintPath>..\..\packages\protobuf-net.2.0.0.668\lib\portable-sl4+net40+wp7+windows8\protobuf-net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -149,6 +147,9 @@
     <Reference Include="Xamarin.Forms.Xaml, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Xamarin.Forms.1.1.0.6201\lib\MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\..\packages\protobuf-net.2.0.0.668\lib\portable-sl4+net40+wp7+windows8\protobuf-net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

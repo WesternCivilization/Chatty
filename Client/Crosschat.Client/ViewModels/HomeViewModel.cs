@@ -36,7 +36,8 @@ namespace Crosschat.Client.ViewModels
             Subject = _appManager.ChatManager.Subject;
 
             _appManager.ChatManager.OnlineUsers.SynchronizeWith(Users, u => new UserViewModel(u));
-            _appManager.ChatManager.Messages.SynchronizeWith(Events, i => _eventViewModelFactory.Get(i, _appManager.AccountManager.AccountName));
+            _appManager.ChatManager.Messages.SynchronizeWith(Events, i => _eventViewModelFactory.Get(i, "John Smith"/*_appManager.AccountManager.AccountName*/));
+
             IsBusy = false;
         }
 

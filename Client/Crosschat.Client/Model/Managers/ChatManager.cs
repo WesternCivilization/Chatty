@@ -26,7 +26,7 @@ namespace Crosschat.Client.Model.Managers
             _chatServiceProxy = chatServiceProxy;
             _accountManager = accountManager;
 
-            Messages = new ObservableCollection<Event>();
+			Messages = new ObservableCollection<Event>();
             OnlineUsers = new ObservableCollection<UserDto>();
         }
 
@@ -56,12 +56,14 @@ namespace Crosschat.Client.Model.Managers
                 OnlineUsers.AddRange(chatStatus.Users);
             }
 
+			/*
             //for screenshots ;)
-            /*OnlineUsers.Add(new UserDto { Name = "Tim Cook", Country = "United States", Platform = "iOS" });
+            OnlineUsers.Add(new UserDto { Name = "Tim Cook", Country = "United States", Platform = "iOS" });
             OnlineUsers.Add(new UserDto { Name = "Eric Schmidt", Country = "United States", Platform = "Android" });
             OnlineUsers.Add(new UserDto { Name = "Satya Nadella", Country = "United States", Platform = "WP8" });
             OnlineUsers.Add(new UserDto { Name = "Miguel de Icaza", Country = "United States", Platform = "iOS" });
-            OnlineUsers.Add(new UserDto { Name = "Egor Bogatov", Country = "Belarus", Platform = "Nokia 3310" });*/
+            OnlineUsers.Add(new UserDto { Name = "Egor Bogatov", Country = "Belarus", Platform = "Nokia 3310" });
+			*/
         }
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Crosschat.Server.Application.DataTransferObjects.Messages;
 using Crosschat.Server.Application.DataTransferObjects.Requests;
 
 
@@ -30,6 +32,8 @@ namespace Crosschat.Client.Model.Proxies
     /// </summary>
 	public partial class ChatServiceProxy : ServiceProxyBase
 	{
+		private List<PublicMessageDto> _messages = new List<PublicMessageDto>();
+
         public ChatServiceProxy(ConnectionManager connectionManager) : base(connectionManager)
         {
         }
@@ -72,12 +76,59 @@ namespace Crosschat.Client.Model.Proxies
 
 		public Task<LastMessageResponse> GetLastMessages(LastMessageRequest request)
 		{
-			return ConnectionManager.SendRequestAndWaitResponse<LastMessageResponse>(request);
+			var question = false;
+			while (!question)
+			{
+				var interaction = StateManager.Instance.GetNextInteraction();
+				var message = new PublicMessageDto
+				{
+					AuthorName = "PageUp",
+					Body = interaction.Message,
+					Role = Server.Application.DataTransferObjects.Enums.UserRoleEnum.User,
+					Timestamp = System.DateTime.Now
+				};
+				_messages.Add(message);
+
+				//if(interaction is a question)
+				// question = true;
+			}
+
+			var response = new LastMessageResponse
+			{
+				Messages = _messages.ToArray()
+					/*
+					new[] {
+					new PublicMessageDto()
+					{
+						AuthorName = "PageUp",
+						Body = "Hello",
+						Role = Server.Application.DataTransferObjects.Enums.UserRoleEnum.User,
+						Timestamp = System.DateTime.Now
+					},
+					new PublicMessageDto()
+					{
+						AuthorName = "John Smith",
+						Body = "Hello back at ya",
+						Role = Server.Application.DataTransferObjects.Enums.UserRoleEnum.User,
+						Timestamp = System.DateTime.Now
+					}
+				}*/
+			};
+
+			return Task.FromResult(response);
 		}
 
 		public Task<GetOnlineUsersResponse> GetOnlineUsers(GetOnlineUsersRequest request)
 		{
-			return ConnectionManager.SendRequestAndWaitResponse<GetOnlineUsersResponse>(request);
+			var response = new GetOnlineUsersResponse
+			{
+				Users = new[] {
+					new UserDto { Name = "PageUp", Country = "United States", Platform = "iOS" },
+					new UserDto { Name = "John Smith", Country = "United States", Platform = "iOS" }
+				}
+			};
+
+			return Task.FromResult(response);
 		}
 		
 	}

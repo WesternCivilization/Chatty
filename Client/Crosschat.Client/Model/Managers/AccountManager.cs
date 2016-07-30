@@ -67,7 +67,7 @@ namespace Crosschat.Client.Model.Managers
                 return AuthenticationResponseType.InvalidNameOrPassword;
 
             await InitDeviceInfo();
-            await ConnectionManager.ConnectAsync();
+            //await ConnectionManager.ConnectAsync();
             var authResult = await _authenticationServiceProxy.Authenticate(
                 new AuthenticationRequest { Huid = _deviceInfo.Huid, Name = name, Password = password });
 
@@ -92,7 +92,7 @@ namespace Crosschat.Client.Model.Managers
         public async Task<RegistrationResponseType> Register(string name, string password, int age, bool sex, string country, string platform)
         {
             await InitDeviceInfo();
-            await ConnectionManager.ConnectAsync();
+            //await ConnectionManager.ConnectAsync();
             var result = await _registrationServiceProxy.RegisterNewUser(
                 new RegistrationRequest
                 {
